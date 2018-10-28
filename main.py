@@ -3,9 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://get-it-done:launchcode@localhost:8889/get-it-done'
-app.config['SQLALCHEMY_ECHO'] = True
-db = SQLAlchemy(app)
+
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -28,7 +26,7 @@ def signup():
 
     if  username == "":
         username_error = 'Please enter Username'
-        username = ''
+        #username = ''
     else:
         if len(username) < 3 or len(username) > 20:
             username_error = 'Please enter Password with at least 3 characters and 20 or less characters'
@@ -50,12 +48,19 @@ def signup():
             verify_error = 'Verified password must match password'
             verify = ''
     
+       
     if email.find("@") is -1:
         email_error = 'Please enter a valid email address'
 
     if email.find(".") is -1:
         email_error = 'Please enter a valid email address'
 
+    if email.find(" ") != 1:
+        email_error = 'Please enter a valid email address'    
+
+    if len(email) < 3 or len(email) > 20:
+        email_error = 'Please enter Password with at least 3 characters and 20 or less characters'
+        #email= ''
 
     if not username_error and not password_error and not verify_error and not email_error:
         name = username
