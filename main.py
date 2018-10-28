@@ -50,7 +50,10 @@ def signup():
             verify_error = 'Verified password must match password'
             verify = ''
     
-    if "@" and "." in email != True:
+    if email.find("@") is -1:
+        email_error = 'Please enter a valid email address'
+
+    if email.find(".") is -1:
         email_error = 'Please enter a valid email address'
 
 
@@ -60,8 +63,8 @@ def signup():
 
     else: 
         return render_template('signup.html', username_error=username_error, 
-            password_error=password_error,
-            verify_error=verify_error)
+            password_error=password_error, verify_error=verify_error,
+            email_error=email_error)
 
 
 
