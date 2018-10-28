@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Sign Up!</h1>
+
+<hr/>
+
+<p>* Required fields</p>
+
+<style>
+    .error { color: red; display:inline-block;
+    }
+</style>
+<form action="/signup" method="post" >
+    <label for="username"> Username* </label>
+        <input name="username" type="text" value="{{ username }}" />
+        <p class="error">{{username_error}}</p>
+    <br>
+    
+
+    <label for="password"> Password* </label>
+        <input name="password" type="text" value="{{ password }}" />
+        <p class="error">{{password_error}}</p>
+   <br>
+
+    <label for="verify"> Verify* </label>
+        <input name="verify" type="text" value="{{ verify }}" />
+        <p class="error">{{verify_error}}</p>
+   <br>
+
+    <label for="email">Email (optional) </label>
+        <input name="email" type="text" value="{{ email }}" />
+        <p class="error">{{email_error}}</p>
+    <br>
+
+    <input type="submit" value="Sign Up">
+</form>
+{% endblock %}
+
+   <!-- 
+    <table>
+        <tr>
+            <td><label for="username">Username*</label></td>
+            <td>
+                <input name="username" type="text" value="{{ username }}">
+            </td>
+        </tr>
+        <p class="error">{{username_error}}</p>
+        <tr>
+            <td><label for="password">Password*</label></td>
+            <td>
+                <input name="password" type="password">
+            </td>
+        </tr>
+        <p class="error">{{password_error}}></p>
+        <tr>
+            <td><label for="verify">Verify Password*</label></td>
+            <td>
+                <input name="verify" type="password">
+                
+            </td>
+        </tr>
+        <p class="error">{{verify_error}}</p>
+        <tr>
+            <td><label for="email">Email (optional)</label></td>
+            <td>
+                <input name="email" type="email"  value="{{ email }}">
+            </td>
+        </tr>  
+        <p class="error">{{email_error}}</p>
+    </table>
+    <br>
+-->
