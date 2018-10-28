@@ -45,20 +45,30 @@ def signup():
     if  verify == "":
         verify_error = 'Please verify password'
         verify = ''
-   
-    if verify != password:
-        verify_error = 'Verified password must match password'
-        verify = ''
+    else:
+        if verify != password:
+            verify_error = 'Verified password must match password'
+            verify = ''
     
-    if not username_error and not password_error and not verify_error:
-             
-        return '<h3> Thank You!</h3>'
+    if "@" and "." in email != True:
+        email_error = 'Please enter a valid email address'
+
+
+    if not username_error and not password_error and not verify_error and not email_error:
+        name = username
+        return redirect('/welcome?name={0}'.format(name))
 
     else: 
         return render_template('signup.html', username_error=username_error, 
             password_error=password_error,
             verify_error=verify_error)
 
+
+
+@app.route('/welcome', methods=['POST', 'GET'])
+def welcome():
+    name = request.args.get('name')
+    return '<h1>Welcome, {0}!</h1>'.format(name)
 
 if __name__ == '__main__':
     app.run()
